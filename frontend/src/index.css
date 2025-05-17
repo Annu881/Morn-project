@@ -1,0 +1,243 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(135deg, #3b82f6, #ec4899);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Dark overlay over gradient background */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: -1;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #1a1a1a;
+  line-height: 1.6;
+}
+
+/* Utility Classes */
+.text-center { text-align: center; }
+.mt-1 { margin-top: 8px; }
+.mt-2 { margin-top: 16px; }
+.mt-3 { margin-top: 24px; }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Button Base */
+.btn {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+.btn:focus {
+  outline: 2px solid #003366;
+  outline-offset: 2px;
+}
+
+/* Primary Button */
+.btn-primary {
+  background-color: #003366;
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 51, 102, 0.3);
+}
+.btn-primary:hover {
+  background-color: #001f4d;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 25px rgba(0, 51, 102, 0.5);
+}
+
+/* Secondary Button */
+.btn-secondary {
+  background-color: #5a5a5a;
+  color: white;
+}
+.btn-secondary:hover {
+  background-color: #3d3d3d;
+  transform: translateY(-2px);
+}
+
+/* Danger Button */
+.btn-danger {
+  background-color: #cc2b3f;
+  color: white;
+  box-shadow: 0 4px 15px rgba(204, 43, 63, 0.3);
+}
+.btn-danger:hover {
+  background-color: #a61e2e;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 25px rgba(204, 43, 63, 0.5);
+}
+
+/* Form Styling */
+.form-group {
+  margin-bottom: 20px;
+}
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #b0c4de;
+  border-radius: 4px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.form-control:focus {
+  outline: none;
+  border-color: #003366;
+  box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.1);
+}
+
+/* Card Styling */
+.card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 2px solid transparent;
+  border-image: linear-gradient(45deg, #3b82f6, #ec4899) 1;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 51, 102, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 51, 102, 0.2);
+  cursor: pointer;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+/* Kanban Layout */
+.kanban-board {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  padding-bottom: 16px;
+  scroll-behavior: smooth;
+}
+
+.kanban-column {
+  min-width: 280px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  padding: 16px;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+.kanban-column:hover {
+  background-color: rgba(255, 255, 255, 0.85);
+  transform: translateY(-5px) scale(1.01);
+  box-shadow: 0 10px 20px rgba(0, 51, 102, 0.3);
+}
+
+.kanban-column-header {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #003366;
+  color: #003366;
+  letter-spacing: 0.5px;
+}
+
+/* Task Card */
+.task-card {
+  background-color: white;
+  border-radius: 6px;
+  padding: 14px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 6px rgba(0, 51, 102, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  animation: slideFadeIn 0.6s ease forwards;
+  opacity: 0;
+}
+.task-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 12px rgba(0, 51, 102, 0.2);
+}
+@keyframes slideFadeIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.task-title {
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: #003366;
+}
+
+.task-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #555;
+  margin-top: 8px;
+}
+
+/* Badge Styling */
+.badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: bold;
+}
+.badge-primary {
+  background-color: #cce0ff;
+  color: #003399;
+}
+
+/* Description Text Styling */
+.description-text {
+  font-size: 14px;
+  color: #1a1a1a;
+  transition: color 0.3s;
+}
+.description-text:hover {
+  color: #003366;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .kanban-board {
+    flex-direction: column;
+  }
+  .kanban-column {
+    width: 100%;
+  }
+}
